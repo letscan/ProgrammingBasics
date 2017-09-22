@@ -153,7 +153,7 @@
 
 .. code-block:: python
 
-    text = ['abcde']
+    text = 'abcde'
     t1 = text[2]
     t2 = text[1:3]
     t3 = text[:3]
