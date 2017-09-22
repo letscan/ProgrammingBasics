@@ -47,7 +47,7 @@
 5. 假设 ``切`` 和 ``打`` 都是现有的函数，只有 ``炒`` 需要进一步实现
 6. 我们实现一下 ``炒``：
 
-    输入：原料    输出：炒好的菜
+    输入： ``原料``    输出： ``炒好的菜``
 
    ::
 
@@ -100,7 +100,7 @@
 
 6. 我们只要再实现 ``list_all_files`` 和 ``find_biggest_file`` 就好啦
 
-   关于 ``list_all_files`` 的实现，我们暂时先不讲解。从赠送的 ``fileutils.py`` 中可以直接引用：
+   关于 ``list_all_files`` 的实现，我们暂时先不讲解。从赠送的 :download:`fileutils.py <fileutils.py>` 中可以直接引用：
 
     .. code-block:: python
 
@@ -111,24 +111,24 @@
 
 到这里我们可以说程序的骨架已经成型，别忘了这些代码是要放进模板的：
 
-.. code-block:: python
+    .. code-block:: python
 
-    # coding: utf-8
-    """目标：找出指定文件夹下最大的一个文件
-    """
-    from os.path import getsize as get_file_size
+        # coding: utf-8
+        """目标：找出指定文件夹下最大的一个文件
+        """
+        from os.path import getsize as get_file_size
 
-    from fileutils import list_all_files
+        from fileutils import list_all_files
 
-    def main():
-        dir_path = r'C:\Windows\System32'
-        all_files = list_all_files(dir_path)
-        big_file_path = find_biggest_file(all_files)
-        big_file_size = get_file_size(big_file_path)
-        print(big_file_path, big_file_size)
+        def main():
+            dir_path = r'C:\Windows\System32'
+            all_files = list_all_files(dir_path)
+            big_file_path = find_biggest_file(all_files)
+            big_file_size = get_file_size(big_file_path)
+            print(big_file_path, big_file_size)
 
-    if __name__ == '__main__':
-        main()
+        if __name__ == '__main__':
+            main()
 
 现在来实现 ``find_biggest_file`` 吧。
 
@@ -151,9 +151,9 @@
 
    计算文件大小我们前面已经有了 ``get_file_size`` ，这里再用一次即可：
 
-.. code-block:: python
+    .. code-block:: python
 
-    file_path = max(file_paths, key=get_file_size)
+        file_path = max(file_paths, key=get_file_size)
 
 
 4. 已经回溯到输入数据了。下一步
@@ -162,18 +162,18 @@
 
 6. 没有需要实现的新函数，我们的 ``find_biggest_file`` 函数已经大功告成！
 
-.. code-block:: python
+    .. code-block:: python
 
-    def find_biggest_file(file_paths):
-        file_path = max(file_paths, key=get_file_size)
-        return file_path
+        def find_biggest_file(file_paths):
+            file_path = max(file_paths, key=get_file_size)
+            return file_path
 
 回顾整个程序
 --------------------
 
 我们来看下最后写好的程序：
 
-.. literalinclude:: find_big_file.py
+    .. literalinclude:: find_big_file.py
 
 观察 ``main`` 函数的内部，我们可以清楚看到输入数据经过一系列操作，被转换为输出数据。这正是前面说过的：
 

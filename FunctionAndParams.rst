@@ -272,12 +272,15 @@
     from sys import stdout
     from os.path import getsize as get_file_size
 
-四种写法分别大致相当于： ::
+四种写法分别大致相当于：
 
-    sys = 引用（名为 ``'sys'`` 的模块）
-    path_util = 引用（名为 ``'os.path'`` 的模块）
-    stdout = 引用（名为 ``'sys'`` 的模块中的名字 ``stdout`` 所代表的值）
-    get_file_size = 引用（名为 ``'os.path'`` 的模块中的名字 ``getsize`` 所代表的值）
+    sys = 名为 ``'sys'`` 的模块
+
+    path_util = 名为 ``'os.path'`` 的模块
+
+    stdout = 名为 ``'sys'`` 的模块中的名字 ``stdout`` 所代表的值
+
+    get_file_size = 名为 ``'os.path'`` 的模块中的名字 ``getsize`` 所代表的值
 
 也就是说，引用（import）相当于在我们的程序里定义一些名字，这些名字所代表的值来自 *模块* 。
 
@@ -291,7 +294,7 @@
 
 而且，某些问题如果不使用Python标准库中已有的程序，我们自己几乎不可能解决。例如要在屏幕上显示文字，如果不利用 ``stdout`` ，我们自己是完全无法实现的。
 
-下面列出另外一些Python标准库非常有用的函数：
+下面列出另外一些Python标准库中非常有用的函数：
 
 .. code-block:: python
 
