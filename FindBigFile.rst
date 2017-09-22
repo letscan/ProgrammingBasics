@@ -1,15 +1,14 @@
 编程的基本方法
 ====================
 
-----
+.. hint::
 
     阅读本章之前，请先确认你已经熟悉下列概念： ::
 
-     名字（Name） 输入 输出 函数 print 列表 max 引用（import）
+        名字（Name） 输入 输出 函数 print 列表 max 引用（import）
 
     如果有任何疑问，请重新阅读前面的章节。
 
-----
 
 一种编程方法
 --------------------
@@ -130,20 +129,20 @@
         if __name__ == '__main__':
             main()
 
-.. hint ::
+    .. hint::
 
-   如果想实际运行程序，请把上面的文件保存为 :download:`find_big_file.py <find_big_file.py>` ，并把下载的 :download:`fileutils.py <fileutils.py>` 文件放在同一目录。
+        如果想实际运行程序，请把上面的文件保存为 :download:`find_big_file.py <find_big_file.py>` ，并把下载的 :download:`fileutils.py <fileutils.py>` 文件也放到同一目录。
 
 
 现在来实现 ``find_biggest_file`` 吧。
 
 
 实现 ``find_biggest_file``
---------------------
+--------------------------
 
 不论实现整个程序，还是实现完成程序中一步操作的函数，我们都用同样的方法和流程：
 
-1. 输入：一批文件    输出：其中一个文件
+1. 输入： ``一批文件``    输出： ``其中一个文件``
 2. 输入的格式就用列表，比如： ``[r'C:\Windows\System32\abc.txt', r'C:\Windows\System32\def.xml', r'C:\Windows\System32\ghi.png']``
 
    输出的格式还是类似： ``r'C:\Windows\System32\abc.txt'``
