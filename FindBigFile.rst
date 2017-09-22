@@ -130,6 +130,11 @@
         if __name__ == '__main__':
             main()
 
+.. hint ::
+
+   如果想实际运行程序，请把上面的文件保存为 :download:`find_big_file.py <find_big_file.py>` ，并把下载的 :download:`fileutils.py <fileutils.py>` 文件放在同一目录。
+
+
 现在来实现 ``find_biggest_file`` 吧。
 
 
