@@ -20,7 +20,8 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+import os
+on_rtd = os.environ.get('READTHEDOCS') == 'True'
 
 # -- General configuration ------------------------------------------------
 
@@ -31,8 +32,15 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.mathjax',
-    'sphinx.ext.githubpages']
+extensions = [
+    'sphinx.ext.graphviz',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.githubpages',
+    #'rinoh.frontend.sphinx',
+]
+if not on_rtd:
+    graphviz_dot = os.environ.get('GRAPHVIZ_PATH', 'dot')
+    rinoh_stylesheet = 'zh_cn.rts'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -84,7 +92,10 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinxdoc'
+if on_rtd:
+    html_theme = 'default'
+else:
+    html_theme = 'sphinxdoc'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -124,7 +135,7 @@ htmlhelp_basename = 'ProgrammingBasicsdoc'
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
-    # 'papersize': 'letterpaper',
+    'papersize': 'letterpaper',
 
     # The font size ('10pt', '11pt' or '12pt').
     #
@@ -143,10 +154,11 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ProgrammingBasics.tex', 'ProgrammingBasics Documentation',
+    (master_doc, 'ProgrammingBasics.tex', '程序设计基础 (Python)',
      'beyond.li', 'manual'),
 ]
 
+#latex_paper_size = 'A5'
 
 # -- Options for manual page output ---------------------------------------
 
@@ -164,10 +176,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ProgrammingBasics', 'ProgrammingBasics Documentation',
-     author, 'ProgrammingBasics', 'One line description of project.',
+    (master_doc, 'ProgrammingBasics', '程序设计基础 (Python)',
+     author, 'ProgrammingBasics', '程序设计基础 (Python)',
      'Miscellaneous'),
 ]
-
-
-
