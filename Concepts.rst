@@ -53,7 +53,7 @@
 .. graphviz::
 
     digraph {
-        node[fontname="Noto Sans CJK SC"];
+        node[fontname="DejaVu Sans"];
 
         "番茄" -> "洗好的番茄" -> "番茄块" -> "番茄炒蛋";
         "鸡蛋" -> "打好并调味的鸡蛋" -> "炒过的鸡蛋" -> "番茄炒蛋";

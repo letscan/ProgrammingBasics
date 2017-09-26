@@ -25,7 +25,7 @@ on_rtd = os.environ.get('READTHEDOCS') == 'True'
 
 if on_rtd:
     from subprocess import check_output
-    print(check_output(['fc-list', ':lang=zh'], shell=True))
+    print(check_output(['fc-list', ':lang=zh-cn'], shell=True))
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
