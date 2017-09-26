@@ -23,8 +23,9 @@
 import os
 on_rtd = os.environ.get('READTHEDOCS') == 'True'
 
-from subprocess import check_output
-print(check_output(['fc-list', ':lang=zh']))
+if on_rtd:
+    from subprocess import check_output
+    print(check_output(['fc-list', ':lang=zh'], shell=True))
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -99,6 +100,7 @@ if on_rtd:
 else:
     html_theme = 'sphinxdoc'
 
+html_show_sourcelink = False
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
