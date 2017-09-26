@@ -23,6 +23,8 @@
 import os
 on_rtd = os.environ.get('READTHEDOCS') == 'True'
 
+from subprocess import check_output
+print(check_output(['fc-list', ':lang=zh']))
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
