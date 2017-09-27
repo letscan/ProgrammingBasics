@@ -24,6 +24,7 @@ import os
 on_rtd = os.environ.get('READTHEDOCS') == 'True'
 
 if on_rtd:
+    graphviz_dot_args = ['-v']
     from subprocess import check_output
     print(check_output(['fc-list', ':lang=zh-cn'], shell=True).decode('utf8'))
 # -- General configuration ------------------------------------------------
