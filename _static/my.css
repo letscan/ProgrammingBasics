@@ -1,0 +1,11 @@
+@import url('css/theme.css');
+
+.rst-content .topic {
+    border: silver 1px solid;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.rst-content .highlight>pre {
+    line-height: 1.5;
+}
