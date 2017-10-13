@@ -99,7 +99,7 @@
 
 6. 我们只要再实现 ``list_all_files`` 和 ``find_biggest_file`` 就好啦
 
-   关于 ``list_all_files`` 的实现，我们暂时先不讲解。从赠送的 :download:`fileutils.py <fileutils.py>` 中可以直接引用：
+   关于 ``list_all_files`` 的实现，我们暂时先不讲解。从赠送的 :download:`fileutils.py <../fileutils.py>` 中可以直接引用：
 
     .. code-block:: python
 
@@ -131,7 +131,7 @@
 
     .. hint::
 
-        如果想实际运行程序，请把上面的文件保存为 :download:`find_big_file.py <find_big_file.py>` ，并把下载的 :download:`fileutils.py <fileutils.py>` 文件也放到同一目录。
+        如果想实际运行程序，请把上面的文件保存为 :download:`find_big_file.py <../find_big_file.py>` ，并把下载的 :download:`fileutils.py <../fileutils.py>` 文件也放到同一目录。
 
 
 现在来实现 ``find_biggest_file`` 吧。
@@ -178,7 +178,7 @@
 
 我们来看下最后写好的程序：
 
-    .. literalinclude:: find_big_file.py
+    .. literalinclude:: ../find_big_file.py
         :language: python
         :linenos:
 
