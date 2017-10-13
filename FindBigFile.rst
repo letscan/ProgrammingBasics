@@ -172,12 +172,15 @@
             file_path = max(file_paths, key=get_file_size)
             return file_path
 
+
 回顾整个程序
---------------------
+------------
 
 我们来看下最后写好的程序：
 
     .. literalinclude:: find_big_file.py
+        :language: python
+        :linenos:
 
 观察 ``main`` 函数的内部，我们可以清楚看到输入数据经过一系列操作，被转换为输出数据。这正是前面说过的：
 
