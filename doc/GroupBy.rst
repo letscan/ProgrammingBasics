@@ -552,7 +552,7 @@
 
 以上将 ``group_photo_by_date()`` 和 ``group_file_by_content()`` 两个分组函数，统一成 ``group_by()`` 这个通用的分组函数的过程，又是一次 **消除重复** 的演练。
 
-今后的程序设计中如果需要分组，可以直接使用 ``group_by()`` 函数。我们把这个函数的完整版本放在了附赠的 dictutils.py 中，你可以直接引用。
+今后的程序设计中如果需要分组，可以直接使用 ``group_by()`` 函数。我们把这个函数的完整版本放在了附赠的 :download:`dictutils.py <../src/dictutils.py>` 中，你可以直接引用。
 
 .. topic:: Exercise
 
