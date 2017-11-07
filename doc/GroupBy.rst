@@ -341,7 +341,7 @@
 
                         key = get_file_sha1(path)
 
-        我们在 :download:`fileutils.py <../fileutils.py>` 中提供了 ``get_file_sha1()`` 函数，直接引用即可。
+        我们在 :download:`fileutils.py <../src/fileutils.py>` 中提供了 ``get_file_sha1()`` 函数，直接引用即可。
 
         完整的 ``group_file_by_content()`` 函数实现如下：
 
