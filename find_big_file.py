@@ -1,5 +1,5 @@
 # coding: utf-8
-"""目标：找出指定文件夹下最大的一个文件
+"""目标：找出指定文件夹中最大的一个文件
 """
 from os.path import getsize as get_file_size
 
