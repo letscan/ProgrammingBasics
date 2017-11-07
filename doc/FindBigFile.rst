@@ -15,43 +15,53 @@
 
 本章的目的，是让大家掌握一种编程方法。下面给出的这种方法，并不是编程的唯一方法，但我们相信这种固定的、有序的流程，更容易让初学者掌握：
 
-1. 把要处理的问题表示为程序的 *输入* 和 *输出*
-2. 确定 *输入* 和 *输出* 的格式，有必要的话，在纸上写几组例子
-3. 从输出数据开始向前回溯，将输出数据表示为可以由 **某数据** 经过 **某种操作** 得到
+    1. 把要处理的问题表示为程序的 *输入* 和 *输出*
+    2. 确定 *输入* 和 *输出* 的格式，有必要的话，在纸上写几组例子
+    3. 从输出数据开始向前回溯，将输出数据表示为可以由 **某数据** 经过 **某种操作** 得到
 
-    这里的操作只要有一个 *名字* 表示即可，暂时不需要关心具体细节
+        * 这里的操作只要有一个 *名字* 表示即可，暂时不需要关心具体细节
 
-4. 上一步中的 **某数据** 如果不是输入数据或已知数据，就继续将它们表示为可以由其它数据经过某种操作得到，直到把输出数据表示成可以由输入数据经过一系列操作得到。
+    4. 上一步中的 **某数据** 如果不是输入数据或已知数据，就继续将它们表示为可以由其它数据经过某种操作得到，直到把输出数据表示成可以由输入数据经过一系列操作得到。
 
-    这里的 **一系列操作** 一般不要超过10个步骤
+        * 这里的 **一系列操作** 一般不要超过10个步骤
 
-5. 现在检查将输入数据转换为输出数据所需的一系列操作，这些操作中可以由现有 *函数* 完成的，就直接 *引用*
-6. 剩下的不能由现有函数完成的操作，是我们需要实现的新 *函数* 。用同样的步骤分别实现所有这些新函数
+    5. 现在检查将输入数据转换为输出数据所需的一系列操作，这些操作中可以由现有 *函数* 完成的，就直接 *引用*
+    6. 剩下的不能由现有函数完成的操作，是我们需要实现的新 *函数* 。用同样的步骤分别实现所有这些新函数
 
 这样的抽象描述大概有点难懂。我们仍然用番茄炒蛋的例子来模拟一下：
 
-1. 输入： ``番茄, 鸡蛋, 调料``    输出： ``番茄炒蛋``
-2. 略
-3. 从输出数据开始向前回溯： ::
+    1. 明确问题的输入和输出
 
-    番茄炒蛋 = 炒(切好的番茄, 打好的鸡蛋, 调料)
+        输入： ``番茄, 鸡蛋, 调料``    输出： ``番茄炒蛋``
 
-4. 还没完全回溯到输入数据，继续： ::
+    2. 确定输入和输出的格式
 
-    切好的番茄 = 切(番茄)
-    打好的鸡蛋 = 打(鸡蛋)
+        略
 
-   现在所有的数据都是输入数据了
+    3. 从输出数据开始向前回溯：
 
-5. 假设 ``切`` 和 ``打`` 都是现有的函数，只有 ``炒`` 需要进一步实现
-6. 我们实现一下 ``炒``：
+        ::
 
-    输入： ``原料``    输出： ``炒好的菜``
+            番茄炒蛋 = 炒(切好的番茄, 打好的鸡蛋, 调料)
 
-   ::
+    4. 还没完全回溯到输入数据，继续：
 
-    热油锅 = 炉灶.加热(锅，油)
-    炒好的菜 = 热油锅.翻炒(原料)
+        ::
+
+            切好的番茄 = 切(番茄)
+            打好的鸡蛋 = 打(鸡蛋)
+
+        现在所有的数据都是输入数据了
+
+    5. 假设 ``切`` 和 ``打`` 都是现有的函数，只有 ``炒`` 需要进一步实现
+    6. 我们实现一下 ``炒``：
+
+        输入： ``原料``    输出： ``炒好的菜``
+
+        ::
+
+            热油锅 = 炉灶.加热(锅，油)
+            炒好的菜 = 热油锅.翻炒(原料)
 
 大致就是这种感觉。
 
@@ -69,50 +79,63 @@
 
 依照上面的流程来处理：
 
-1. 输入： ``一个文件夹``    输出： ``print(文件的路径，文件的大小)``
-2. 输入的格式：类似 ``C:\\Windows\\System32``
+    1. 明确问题的输入和输出
 
-   输出的格式：类似 ``C:\Windows\System32\abc.txt 12345``
-3. 这一步开始就可以直接用代码来写了
+        输入： ``一个文件夹``    输出： ``print(文件的路径，文件的大小)``
 
-    .. code-block:: python
+    2. 确定输入与输出的格式
 
-        big_file_path = find_biggest_file(all_files)
-        big_file_size = get_file_size(big_file_path)
-        print(big_file_path, big_file_size)
+        * 输入的格式：类似 ``C:\\Windows\\System32``
+        * 输出的格式：类似 ``C:\Windows\System32\abc.txt 12345``
 
-4. 还没回溯到输入数据，继续
+    3. 从输出数据开始回溯
 
-    .. code-block:: python
+        这一步开始就可以直接用代码来写了：
 
-        dir_path = r'C:\Windows\System32'
-        all_files = list_all_files(dir_path)
-        big_file_path = find_biggest_file(all_files)
-        big_file_size = get_file_size(big_file_path)
-        print(big_file_path, big_file_size)
+        ::
 
-5. 现在我们需要 ``list_all_files`` 、 ``find_biggest_file`` 、 ``get_file_size`` 这3个操作，来把输入数据转换为输出数据。
+            big_file_path = find_biggest_file(all_files)
+            big_file_size = get_file_size(big_file_path)
+            print(big_file_path, big_file_size)
 
-   其中 ``get_file_size`` 我们可以直接引用Python标准库：
+    4. 继续回溯直到输入数据
 
-    .. code-block:: python
+        还没回溯到输入数据，继续：
 
-        from os.path import getsize as get_file_size
+        ::
 
-6. 我们只要再实现 ``list_all_files`` 和 ``find_biggest_file`` 就好啦
+            dir_path = r'C:\Windows\System32'
+            all_files = list_all_files(dir_path)
+            big_file_path = find_biggest_file(all_files)
+            big_file_size = get_file_size(big_file_path)
+            print(big_file_path, big_file_size)
 
-   关于 ``list_all_files`` 的实现，我们暂时先不讲解。从赠送的 :download:`fileutils.py <../fileutils.py>` 中可以直接引用：
+    5. 整理所需函数
 
-    .. code-block:: python
+        现在我们需要 ``list_all_files`` 、 ``find_biggest_file`` 、 ``get_file_size`` 这3个操作，来把输入数据转换为输出数据。
 
-        from fileutils import list_all_files
+        其中 ``get_file_size`` 我们可以直接从Python标准库中引用：
 
-   需要我们实现的就只剩下 ``find_biggest_file`` 。
+        ::
+
+                from os.path import getsize as get_file_size
+
+    6. 实现所需函数
+
+        我们只要再实现 ``list_all_files`` 和 ``find_biggest_file`` 就好啦。
+
+        关于 ``list_all_files`` 的实现，我们暂时先不讲解。从赠送的 :download:`fileutils.py <../src/fileutils.py>` 中可以直接引用：
+
+        ::
+
+                from fileutils import list_all_files
+
+        需要我们实现的就只剩下 ``find_biggest_file`` 。
 
 
 到这里我们可以说程序的骨架已经成型，别忘了这些代码是要放进模板的：
 
-    .. code-block:: python
+    ::
 
         # coding: utf-8
         """目标：找出指定文件夹中最大的一个文件
@@ -133,7 +156,7 @@
 
     .. hint::
 
-        如果想实际运行程序，请把上面的文件保存为 :download:`find_big_file.py <../find_big_file.py>` ，并把下载的 :download:`fileutils.py <../fileutils.py>` 文件也放到同一目录。
+        如果想实际运行程序，请把上面的文件保存为 :download:`find_big_file.py <../src/find_big_file.py>` ，并把下载的 :download:`fileutils.py <../src/fileutils.py>` 文件也放到同一目录。
 
 
 现在来实现 ``find_biggest_file`` 吧。
@@ -144,35 +167,47 @@
 
 不论实现整个程序，还是实现完成程序中一步操作的函数，我们都用同样的方法和流程：
 
-1. 输入： ``一批文件``    输出： ``其中一个文件``
-2. 输入的格式就用列表，比如： ``[r'C:\Windows\System32\abc.txt', r'C:\Windows\System32\def.xml', r'C:\Windows\System32\ghi.png']``
+    1. 明确问题的输入和输出
 
-   输出的格式还是类似： ``r'C:\Windows\System32\abc.txt'``
+        输入： ``一批文件``    输出： ``其中一个文件``
 
-3. 从输出数据开始向前回溯。这里你可能会感觉有点困难，因为输出数据只是从输入数据中拿出一个而已。输出数据与输入数据之间的距离太近，反而不知道该怎么操作？
+    2. 确定输入和输出的格式
 
-   这种时候，请回想我们之前是否遇到过类似的函数：从一个列表中拿出一个数据，有这样的函数吗？
+        * 输入的格式就用列表，比如： ``[r'C:\Windows\System32\abc.txt', r'C:\Windows\System32\def.xml', r'C:\Windows\System32\ghi.png']``
+        * 输出的格式还是类似： ``r'C:\Windows\System32\abc.txt'``
 
-   想起来了吗？从列表中找出最大的一个，我们的 ``max`` 函数。我们只要把输入数据的文件列表丢进 ``max()`` ，再告诉 ``max()`` 用文件的大小作为判断标准（ ``key`` ）
+    3. 从输出数据开始向前回溯
 
-   计算文件大小我们前面已经有了 ``get_file_size`` ，这里再用一次即可：
+        这里你可能会感觉有点困难，因为输出数据只是从输入数据中拿出一个而已。输出数据与输入数据之间的距离太近，反而不知道该怎么操作？
 
-    .. code-block:: python
+        这种时候，请回想我们之前是否遇到过类似的函数：从一个列表中拿出一个数据，有这样的函数吗？
 
-        file_path = max(file_paths, key=get_file_size)
+        想起来了吗？从列表中找出最大的一个，我们的 ``max`` 函数。我们只要把输入数据的文件列表丢进 ``max()`` ，再告诉 ``max()`` 用文件的大小作为判断标准（ ``key`` ）
+
+        计算文件大小我们前面已经有了 ``get_file_size`` ，这里再用一次即可：
+
+        ::
+
+                file_path = max(file_paths, key=get_file_size)
 
 
-4. 已经回溯到输入数据了。下一步
+    4. 继续回溯直到输入数据
 
-5. 我们需要的 ``max`` 和 ``get_file_size`` 函数都已经有了。下一步
+        已经回溯到输入数据。直接下一步。
 
-6. 没有需要实现的新函数，我们的 ``find_biggest_file`` 函数已经大功告成！
+    5. 整理所需函数
 
-    .. code-block:: python
+        我们需要的 ``max`` 和 ``get_file_size`` 函数都已经有了。下一步。
 
-        def find_biggest_file(file_paths):
-            file_path = max(file_paths, key=get_file_size)
-            return file_path
+    6. 实现所需函数
+
+        没有需要实现的新函数，我们的 ``find_biggest_file`` 函数已经大功告成！
+
+        ::
+
+                def find_biggest_file(file_paths):
+                    file_path = max(file_paths, key=get_file_size)
+                    return file_path
 
 
 回顾整个程序
@@ -180,7 +215,7 @@
 
 我们来看下最后写好的程序：
 
-    .. literalinclude:: ../find_big_file.py
+    .. literalinclude:: ../src/find_big_file.py
         :language: python
         :linenos:
 
