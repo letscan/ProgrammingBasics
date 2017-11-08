@@ -499,11 +499,11 @@
     ::
 
         Traceback (most recent call last):
-            File "c:\Users\chao.li\Documents\Projects\ProgrammingBasics\get_dir_mtime.py", line 27, in <module>
+            File "c:\ProgrammingBasics\src\get_dir_mtime.py", line 27, in <module>
                 main()
-            File "c:\Users\chao.li\Documents\Projects\ProgrammingBasics\get_dir_mtime.py", line 24, in main
+            File "c:\ProgrammingBasics\src\get_dir_mtime.py", line 24, in main
                 print(get_file_or_dir_mtime_naive(path))
-            File "c:\Users\chao.li\Documents\Projects\ProgrammingBasics\get_dir_mtime.py", line 18, in get_file_or_dir_mtime_naive
+            File "c:\ProgrammingBasics\src\get_dir_mtime.py", line 18, in get_file_or_dir_mtime_naive
                 mtime = get_file_mtime(path)
             File "C:\Python36\lib\genericpath.py", line 55, in getmtime
                 return os.stat(filename).st_mtime
