@@ -15,4 +15,6 @@
     FindBigFile
     DataTypes
     Itemizations
+    MappingAndLooping
+    AggregatesAndSorting
     GroupBy
