@@ -1,3 +1,6 @@
+.. default-role:: code
+
+
 对数据分组
 ==========
 
@@ -131,7 +134,7 @@
                 groups[date(2017, 1, 1)].append('a.jpg')
                 groups[date(2017, 1, 2)].append('b.jpg')
 
-        我们通过 ``groups[date(2017, 1, 1)]`` 和 ``groups[date(2017, 1, 2)]`` 分别取到两个日期对应的空列表 ``[]`` ，然后通过 ``append()`` 分别向两个空列表中各添加了一个元素。
+        我们先通过 ``groups[date(2017, 1, 1)]`` 和 ``groups[date(2017, 1, 2)]`` 分别取到两个日期对应的空列表 ``[]`` ，然后通过 ``append()`` 向两个空列表中各添加了一个元素。
 
         此时字典的内容变成如下所示：
 
@@ -169,37 +172,37 @@
 
                 groups[get_photo_date(photo)].append(photo)
 
-        结合前面已经学到的映射，我们就可以将列表 ``photos`` 中的所有元素添加到到字典 ``groups`` 中：
+        由于我们需要对列表 ``photos`` 中的每个 ``photos`` 中都添加到字典 ``groups`` 中的某个列表中去，这里可以使用映射：
 
             .. code-block:: python
 
-                ... = [groups[get_photo_date(photo)].append(photo) for photo in photos]
+                [groups[get_photo_date(photo)].append(photo) for photo in photos]
 
-        等等！这里似乎出现了问题。等号左边应该写什么呢？如果你还记得 ``append()`` 的返回值总是 ``None`` ，就可以预测这个映射得到的只是一个全部由 ``None`` 组成的列表，我们需要的并非这个列表而是字典 ``groups`` 。
-
-        当然我们也可以直接省略等号及等号左边，也就是放弃映射的结果，而只是利用这个过程的“副作用”：向 ``groups`` 中的各个列表添加元素。
-
-            .. code-block:: python
-
-                def group_photo_by_date(photos):
-                    [groups[get_photo_date(photo)].append(photo) for photo in photos]
-                    return groups
-
-        但通常我们还是推荐另一种更清晰的写法：
+        如果你还记得 ``append()`` 的返回值总是 ``None`` ，就可以预测这个映射得到的只是一个全部由 ``None`` 组成的列表，我们需要的并非这个列表而是字典 ``groups`` 。也就是说，我们只是利用这个过程的“副作用”：向 ``groups`` 中的各个列表添加元素。这种场合更适合用循环的写法：
 
             .. code-block:: python
 
                 def group_photo_by_date(photos):
+                    groups = {}
                     for photo in photos:
                         key = get_photo_date(photo)
                         groups[key].append(photo)
                     return groups
 
-        .. note::
+        上面代码中的 ``groups`` 暂时被定义为空字典 ``{}`` 。如果你此时运行程序，大概会发现程序出错，报出的异常信息类似这样：
 
-            这种新的写法叫做 *for语句块* ，适合不需要映射结果、只需要映射过程的“副作用”的场景。同时，for语句块内部允许包含多行代码，利用得当的话可以使代码更清晰易读。我们以后会详细讨论for语句块的各种用法。
+        ::
 
-        我们还是将注意力转回 ``groups`` 。注意现在 ``group`` 这个名字还没有被定义！包含所有日期作为key的字典是我们假设出来的，实际上并不存在这样一个字典（想想怎么可能包含 **所有的** 日期）。一旦某张照片的拍摄日期不在 ``groups`` 所包含的key的范围之内，就会引发异常 ``KeyError`` 。
+            Traceback (most recent call last):
+                File "c:\ProgrammingBasics\src\count_photos.py", line 27, in <module>
+                    main()
+                File "c:\ProgrammingBasics\src\count_photos.py", line 24, in main
+                    photo_by_date = group_photo_by_date(photos)
+                File "c:\ProgrammingBasics\src\count_photos.py", line 18, in group_photo_by_date
+                    groups[key].append(photo)
+            KeyError: '20150831'
+
+        这是因为此时的 ``groups`` 并非是我们理想中“包含所有日期作为key的字典”，而是不包含任何key的空字典。任何照片的拍摄日期都不在 ``groups`` 所包含的key的范围之内，从而 ``groups[key].append(photo)`` 必然会引发异常 ``KeyError`` 。而且即使我们在字典中预先添加大量日期作为key，也无法保证没有照片的拍摄日期落在key的范围之外。毕竟谁也不可能列举出 **所有** 日期。
 
         好在Python提供了一个工具帮我们解决这个问题：
 
@@ -231,13 +234,6 @@
 .. topic:: Exercise
 
     实现 ``list_all_photos()`` ，``get_photo_date()`` 和 ``find_big_day()`` ，使照片分组程序可以完整执行。
-
-.. topic:: Exercise
-
-    用for语句块的形式写出下列映射：
-
-        1. 在屏幕上打印出某个字典中所有的value
-        2. 同上，但是每打印一个value就暂停1秒钟再打印下一个value
 
 回顾一下写好的程序：
 
