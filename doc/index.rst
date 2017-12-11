@@ -8,13 +8,31 @@
 
 .. toctree::
     :maxdepth: 1
-    :caption: 目录
+    :caption: 基本概念
 
     Concepts
     FunctionAndParams
     FindBigFile
+
+.. toctree::
+    :maxdepth: 1
+    :caption: 间奏
+
     DataTypes
+
+.. toctree::
+    :maxdepth: 1
+    :caption: 程序结构
+
     Itemizations
     MappingAndLooping
+    SplitsAndGrouping
     AggregatesAndSorting
-    GroupBy
+
+.. toctree::
+    :maxdepth: 1
+    :caption: 日常任务
+
+.. toctree::
+    :maxdepth: 1
+    :caption: 研究课题
