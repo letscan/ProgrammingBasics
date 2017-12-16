@@ -25,7 +25,7 @@ def get_dir_size(dirpath):
     return size
 
 def read_text(path, encoding='utf-8'):
-    with open(path, 'r') as fp:
+    with open(path, 'r', encoding=encoding) as fp:
         text = fp.read()
     return text
 
@@ -39,6 +39,22 @@ def get_hash(path):
     hasher = hashlib.sha256()
     hasher.update(content)
     return hasher.hexdigest()
+
+def ensure_dir(dirpath):
+    try:
+        os.makedirs(dirpath):
+    except (IOError, OSError):
+        """dir exists"""
+
+def write_text(path, text, encoding='utf-8'):
+    ensure_dir(os.path.dirname(path))
+    with open(path, 'w', encoding=encoding) as fp:
+        fp.write(text)
+
+def write_bytes(path, bs):
+    ensure_dir(os.path.dirname(path))
+    with open(path, 'wb') as fp:
+        fp.write(bs)
 
 
 def main():
