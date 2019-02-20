@@ -537,7 +537,7 @@
 
     ::
 
-            File "c:\Users\chao.li\Documents\Projects\ProgrammingBasics\get_dir_mtime.py", line 18, in get_file_or_dir_mtime_naive
+            File "c:\ProgrammingBasics\get_dir_mtime.py", line 18, in get_file_or_dir_mtime_naive
                 mtime = get_file_mtime(path)
 
 这两行格式和内容也是一样，其中 ``get_dir_mtime.py`` 正是我们的程序文件。后面继续指出了 ``get_file_or_dir_mtime_naive`` 函数中的 ``mtime = get_file_mtime(path)`` 就是异常发生时正在执行的代码。
